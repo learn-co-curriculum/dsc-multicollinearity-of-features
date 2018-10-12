@@ -351,7 +351,7 @@ Note that correlations on the diagonal are automatically equal to one as they re
 
 
 ```python
-data_pred.corr() > 0.75
+abs(data_pred.corr()) > 0.75
 ```
 
 
