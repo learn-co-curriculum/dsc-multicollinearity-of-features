@@ -17,7 +17,7 @@ And it is exactly because of that reason that multicollinearity can cause proble
 
 Because the idea behind regression is that you can change one variable and keep the others constant, correlation is a problem, because it indicates that changes in one predictor are associated with changes in another one as well. Because of this, the estimates of the coefficients can have big fluctuations as a result of small changes in the model. As a result, you may not be able to trust the p-values associated with correlated predictors. 
 
-In this lecture, you'll learn about methods to identify multicollinearity, and will remove preditors that are highly correlated with others. You'll learn about other (and less ad-hoc) ways to deal with multicollinearity later on.
+In this lecture, you'll learn about methods to identify multicollinearity, and will remove predictors that are highly correlated with others. You'll learn about other (and less ad-hoc) ways to deal with multicollinearity later on.
 
 ## Identifying multicollinearity
 
@@ -461,7 +461,7 @@ abs(data_pred.corr()) > 0.75
 
 
 
-It seems like the variables "cylinder", "displacement", "horsepower" and "weight" are all pretty highly correlated among each other. As such, you would typically remove three of them in order to remove collinear features. Again here, it would be nice to have easier visuals in case when our predictor base grows (sometimes models have 100s of predictors!). A nice visualization of the correlation matrix is the heatmap. 
+It seems like the variables "cylinder", "displacement", "horsepower" and "weight" are all pretty highly correlated among each other. As such, you would typically remove three of them in order to remove collinear features. Again here, it would be nice to have easier visuals in case our predictor base grows (sometimes models have 100s of predictors!). A nice visualization of the correlation matrix is the heatmap. 
 
 
 ```python
@@ -470,7 +470,7 @@ sns.heatmap(data_pred.corr(), center=0);
 ```
 
 
-![png](index_files/index_17_0.png)
+![png](index_files/index_11_0.png)
 
 
 You can see that light pink colors represent high correlations.
