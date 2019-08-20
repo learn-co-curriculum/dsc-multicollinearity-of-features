@@ -15,7 +15,7 @@ You will be able to:
 When performing a regression analysis, the main goal is to identify the relationship between each predictor and the outcome variable. The interpretation of a regression coefficient is that it represents the average change in the dependent variable for each 1 unit change in a predictor, assuming that all the other predictor variables are kept constant.
 And it is exactly because of that reason that multicollinearity can cause problems.
 
-Because the idea behind regression is that you can change one variable and keep the others constant, correlation is a problem, because it indicates that changes in one predictor are associated with changes in another one as well. Because of this, the estimates of the coefficients can have big fluctuations as a result of small changes in the model. As a result, you may not be able to trust the p-values associated with correlated predictors. 
+Because the idea behind regression is that you can change one variable and keep the others constant, correlation is a problem, because it indicates that changes in one predictor are associated with changes in another one as well. Because of this, the estimates of the coefficients can have big fluctuations as a result of small changes in the model. As a result, you may not be able to interpret the coefficients reliably or trust the p-values associated with correlated predictors.
 
 In this lecture, you'll learn about methods to identify multicollinearity, and will remove predictors that are highly correlated with others. You'll learn about other (and less ad-hoc) ways to deal with multicollinearity later on.
 
@@ -233,7 +233,7 @@ For an initial idea on how the predictors relate, you can take a look at scatter
 pd.plotting.scatter_matrix(data_pred,figsize  = [9, 9]);
 ```
 
-This matrix has the cool feature that it returns scatterplots for relationships between two predictors, and histograms for a single feature on the diagonal. Have a quick look at this. When talking about correlation, what sort of scatter plots will catch our eye? Probably the ones with scatter plots that reveal some sort of linear relationship. For example, weight and displacement seem to be highly correlated. Weight and horsepower as well, and (not surprisingly) displacement and horsepower. This is nice, but it would be hard to evaluate to examine each plot in detail when having a ton of features. Let's look at the correlation matrix instead. Instead of returning scatter plots and histograms, a correlation matrix returns pairwise correlations. Recall that correlations take a value between -1 and 1, -1 being a perfectly negative linear relationship, and +1 a perfectly positive linear relationship. 
+This matrix has the cool feature that it returns scatterplots for relationships between two predictors, and histograms for a single feature on the diagonal. Have a quick look at this. When talking about correlation, what sort of scatter plots will catch our eye? Probably the ones with scatter plots that reveal some sort of linear relationship. For example, weight and displacement seem to be highly correlated. Weight and horsepower as well, and (not surprisingly) displacement and horsepower. This is nice, but it would be hard to examine each plot in detail when having a ton of features. Let's look at the correlation matrix instead. Instead of returning scatter plots and histograms, a correlation matrix returns pairwise correlations. Recall that correlations take a value between -1 and 1, -1 being a perfectly negative linear relationship, and +1 a perfectly positive linear relationship. 
 
 
 ```python
@@ -474,6 +474,277 @@ sns.heatmap(data_pred.corr(), center=0);
 
 
 You can see that light pink colors represent high correlations.
+
+## The Dummy Variable Trap
+
+Multicollinearity is also commonly encountered when transforming categorical variables to dummy variables. Due to the nature of how dummy variables are created, one variable can be predicted from all of the others. This results in perfect multicollinearity. If that isn't super clear, consider the example dataset below where you have one categorical variable, "Country", with three levels: USA, Mexico, and China.  
+
+
+```python
+# List of countries
+countries = ["China", "USA", "USA", "Mexico", "China"]
+
+# Convert to data frame
+df = pd.DataFrame(countries, columns=["Country"])
+df.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>China</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>USA</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>USA</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Mexico</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>China</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Now, use ```get_dummies()``` to convert the Country variable to dummy variables.
+
+
+```python
+# Convert to dummy variables
+df_dummies = pd.get_dummies(df)
+df_dummies.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country_China</th>
+      <th>Country_Mexico</th>
+      <th>Country_USA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+As a consequence of creating dummy variables for every country, you can now predict any single country variable using the information from all of the others. OK, that might sound more like a tongue twister than an explanation so take Country_China as an example. You can perfectly predict this column by adding the values in the Country_Mexico and Country_USA columns then subtracting the sum from 1 as shown below:
+
+
+```python
+# Predict Country_China column from Country_Mexico and Country_USA
+predicted_china = 1 - (df_dummies["Country_Mexico"] + df_dummies["Country_USA"])
+predicted_china.to_frame(name="Predicted_China")
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Predicted_China</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+This is an example of perfect multicollinearity and is commonly known as the **Dummy Variable Trap**. Like any instance of multicollinearity, the dummy variable trap will have a negative impact on regression models. 
+
+Fortunately, this can be avoided by simply dropping one of the dummy variables. You can do this by subsetting the dataframe manually or, more conveniently, by passing ```drop_first=True``` to ```get_dummies()```: 
+
+
+```python
+# Conver to dummies, dropping 1 
+df_dropped = pd.get_dummies(df, drop_first=True)
+df_dropped.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country_Mexico</th>
+      <th>Country_USA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+If you take a close look at the dataframe above, you'll see that there is no longer enough information to predict any of the columns so the multicollinearity has been eliminated. 
+
+You'll soon see that dropping the first variable affects the interpretation of regression coefficients. The dropped category becomes what is known as the **reference category**. The regression coefficients that result from fitting the remaining categories represent the change *relative* to the reference.
+
+You'll also see that in certain contexts, multicollinearity is less of an issue and can be ignored. It is therefore important to understand which models are sensitive to multicollinearity and which are not.
 
 ## Summary
 
