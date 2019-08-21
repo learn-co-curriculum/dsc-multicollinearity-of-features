@@ -484,7 +484,7 @@ Multicollinearity is also commonly encountered when transforming categorical var
 # List of countries
 countries = ["China", "USA", "USA", "Mexico", "China"]
 
-# Convert to data frame
+# Convert to dataframe
 df = pd.DataFrame(countries, columns=["Country"])
 df.head()
 ```
@@ -678,7 +678,7 @@ Fortunately, this can be avoided by simply dropping one of the dummy variables. 
 
 
 ```python
-# Conver to dummies, dropping 1 
+# Convert to dummies, dropping 1 
 df_dropped = pd.get_dummies(df, drop_first=True)
 df_dropped.head()
 ```
