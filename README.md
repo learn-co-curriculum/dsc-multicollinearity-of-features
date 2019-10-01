@@ -2,7 +2,7 @@
 # Multicollinearity of Features
 
 ## Introduction
-In the previous section you have learned about correlation and covariance. Now that you've begun moving towards regression models with multiple predictors, let's explore what it means when predictors are correlated with each other.
+In the previous lesson you learned about correlation and covariance. Now that you've begun moving towards regression models with multiple predictors, let's explore what it means when predictors are correlated with each other.
 
 ## Objectives
 You will be able to:
@@ -17,7 +17,7 @@ And it is exactly because of that reason that multicollinearity can cause proble
 
 Because the idea behind regression is that you can change one variable and keep the others constant, correlation is a problem, because it indicates that changes in one predictor are associated with changes in another one as well. Because of this, the estimates of the coefficients can have big fluctuations as a result of small changes in the model. As a result, you may not be able to interpret the coefficients reliably or trust the p-values associated with correlated predictors.
 
-You've seen that perfect multicollinearity can result when creating dummy variables and how this can be avoided by dropping one variable. In this lecture, you'll learn about methods to identify general multicollinearity and will remove predictors that are highly correlated with others. You'll learn about other (and less ad-hoc) ways to deal with multicollinearity later on.
+You've seen that perfect multicollinearity can result when creating dummy variables and how this can be avoided by dropping one variable. In this lesson, you'll learn about methods to identify general multicollinearity and will remove predictors that are highly correlated with others. You'll learn about other (and less ad-hoc) ways to deal with multicollinearity later on.
 
 ## Identifying multicollinearity
 
@@ -25,9 +25,9 @@ To illustrate ways to identify multicollinearity, let's have a look at the "auto
 
 
 ```python
-## import numpy as np
+import matplotlib.pyplot as plt
 import pandas as pd
-data = pd.read_csv("auto-mpg.csv")
+data = pd.read_csv('auto-mpg.csv')
 data['horsepower'].astype(str).astype(int) # don't worry about this for now
 data.head()
 ```
@@ -131,11 +131,11 @@ data.head()
 
 
 
-To understand the correlation structure of the predictors, you'll take a copy of the data but this time without the target variable (mpg) in it. It's also advisable to remove the "car name" column as keeping it in won't lead to meaningful results.
+To understand the correlation structure of the predictors, you'll take a copy of the data but this time without the target variable (mpg) in it. It's also advisable to remove the `'car name'` column as keeping it in won't lead to meaningful results.
 
 
 ```python
-data_pred= data.iloc[:,1:8]
+data_pred = data.iloc[:,1:8]
 data_pred.head()
 ```
 
@@ -231,7 +231,12 @@ For an initial idea on how the predictors relate, you can take a look at scatter
 
 ```python
 pd.plotting.scatter_matrix(data_pred,figsize  = [9, 9]);
+plt.show()
 ```
+
+
+![png](index_files/index_5_0.png)
+
 
 This matrix has the cool feature that it returns scatterplots for relationships between two predictors, and histograms for a single feature on the diagonal. Have a quick look at this. When talking about correlation, what sort of scatter plots will catch our eye? Probably the ones with scatter plots that reveal some sort of linear relationship. For example, weight and displacement seem to be highly correlated. Weight and horsepower as well, and (not surprisingly) displacement and horsepower. This is nice, but it would be hard to examine each plot in detail when having a ton of features. Let's look at the correlation matrix instead. Instead of returning scatter plots and histograms, a correlation matrix returns pairwise correlations. Recall that correlations take a value between -1 and 1, -1 being a perfectly negative linear relationship, and +1 a perfectly positive linear relationship. 
 
@@ -461,7 +466,7 @@ abs(data_pred.corr()) > 0.75
 
 
 
-It seems like the variables "cylinder", "displacement", "horsepower" and "weight" are all pretty highly correlated among each other. As such, you would typically remove three of them in order to remove collinear features. Again here, it would be nice to have easier visuals in case our predictor base grows (sometimes models have 100s of predictors!). A nice visualization of the correlation matrix is the heatmap. 
+It seems like the variables `'cylinder'`, `'displacement'`, `'horsepower'`, and `'weight'` are all pretty highly correlated among each other. As such, you would typically remove three of them in order to remove collinear features. Again here, it would be nice to have easier visuals in case our predictor base grows (sometimes models have 100s of predictors!). A nice visualization of the correlation matrix is the heatmap. 
 
 
 ```python
@@ -477,4 +482,4 @@ You can see that light pink colors represent high correlations.
 
 ## Summary
 
-In this section, you learned about multicollinearity and how it can negatively affect regression outcome. Additionally, you learned about correlation matrices and heatmaps to visually inspect multicollinearity.
+In this section, you learned about multicollinearity and how it can negatively affect the regression outcome. Additionally, you learned about correlation matrices and heatmaps to visually inspect multicollinearity.
