@@ -6,8 +6,9 @@ In the previous lesson you learned about correlation and covariance. Now that yo
 
 ## Objectives
 You will be able to:
-* Understand multicollinearity and possible negative impacts on regression outcome
-* Use heatmaps to visually inspect multicollinearity
+* Explain why multicollinearity is an issue with linear regression
+* Create and Interpret a correlation matrix/heatmap and scatter matrix
+* Identify if variables are exhibiting collinearity
 
 ## Possible negative impacts of multicollinearity
 
