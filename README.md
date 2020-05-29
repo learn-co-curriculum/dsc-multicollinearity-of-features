@@ -67,7 +67,7 @@ data.head()
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <td>0</td>
       <td>18.0</td>
       <td>8</td>
       <td>307.0</td>
@@ -79,7 +79,7 @@ data.head()
       <td>chevrolet chevelle malibu</td>
     </tr>
     <tr>
-      <th>1</th>
+      <td>1</td>
       <td>15.0</td>
       <td>8</td>
       <td>350.0</td>
@@ -91,7 +91,7 @@ data.head()
       <td>buick skylark 320</td>
     </tr>
     <tr>
-      <th>2</th>
+      <td>2</td>
       <td>18.0</td>
       <td>8</td>
       <td>318.0</td>
@@ -103,7 +103,7 @@ data.head()
       <td>plymouth satellite</td>
     </tr>
     <tr>
-      <th>3</th>
+      <td>3</td>
       <td>16.0</td>
       <td>8</td>
       <td>304.0</td>
@@ -115,7 +115,7 @@ data.head()
       <td>amc rebel sst</td>
     </tr>
     <tr>
-      <th>4</th>
+      <td>4</td>
       <td>17.0</td>
       <td>8</td>
       <td>302.0</td>
@@ -172,7 +172,7 @@ data_pred.head()
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <td>0</td>
       <td>8</td>
       <td>307.0</td>
       <td>130</td>
@@ -182,7 +182,7 @@ data_pred.head()
       <td>1</td>
     </tr>
     <tr>
-      <th>1</th>
+      <td>1</td>
       <td>8</td>
       <td>350.0</td>
       <td>165</td>
@@ -192,7 +192,7 @@ data_pred.head()
       <td>1</td>
     </tr>
     <tr>
-      <th>2</th>
+      <td>2</td>
       <td>8</td>
       <td>318.0</td>
       <td>150</td>
@@ -202,7 +202,7 @@ data_pred.head()
       <td>1</td>
     </tr>
     <tr>
-      <th>3</th>
+      <td>3</td>
       <td>8</td>
       <td>304.0</td>
       <td>150</td>
@@ -212,7 +212,7 @@ data_pred.head()
       <td>1</td>
     </tr>
     <tr>
-      <th>4</th>
+      <td>4</td>
       <td>8</td>
       <td>302.0</td>
       <td>140</td>
@@ -278,7 +278,7 @@ data_pred.corr()
   </thead>
   <tbody>
     <tr>
-      <th>cylinders</th>
+      <td>cylinders</td>
       <td>1.000000</td>
       <td>0.950823</td>
       <td>0.842983</td>
@@ -288,7 +288,7 @@ data_pred.corr()
       <td>-0.568932</td>
     </tr>
     <tr>
-      <th>displacement</th>
+      <td>displacement</td>
       <td>0.950823</td>
       <td>1.000000</td>
       <td>0.897257</td>
@@ -298,7 +298,7 @@ data_pred.corr()
       <td>-0.614535</td>
     </tr>
     <tr>
-      <th>horsepower</th>
+      <td>horsepower</td>
       <td>0.842983</td>
       <td>0.897257</td>
       <td>1.000000</td>
@@ -308,7 +308,7 @@ data_pred.corr()
       <td>-0.455171</td>
     </tr>
     <tr>
-      <th>weight</th>
+      <td>weight</td>
       <td>0.897527</td>
       <td>0.932994</td>
       <td>0.864538</td>
@@ -318,7 +318,7 @@ data_pred.corr()
       <td>-0.585005</td>
     </tr>
     <tr>
-      <th>acceleration</th>
+      <td>acceleration</td>
       <td>-0.504683</td>
       <td>-0.543800</td>
       <td>-0.689196</td>
@@ -328,7 +328,7 @@ data_pred.corr()
       <td>0.212746</td>
     </tr>
     <tr>
-      <th>model year</th>
+      <td>model year</td>
       <td>-0.345647</td>
       <td>-0.369855</td>
       <td>-0.416361</td>
@@ -338,7 +338,7 @@ data_pred.corr()
       <td>0.181528</td>
     </tr>
     <tr>
-      <th>origin</th>
+      <td>origin</td>
       <td>-0.568932</td>
       <td>-0.614535</td>
       <td>-0.455171</td>
@@ -392,7 +392,7 @@ abs(data_pred.corr()) > 0.75
   </thead>
   <tbody>
     <tr>
-      <th>cylinders</th>
+      <td>cylinders</td>
       <td>True</td>
       <td>True</td>
       <td>True</td>
@@ -402,7 +402,7 @@ abs(data_pred.corr()) > 0.75
       <td>False</td>
     </tr>
     <tr>
-      <th>displacement</th>
+      <td>displacement</td>
       <td>True</td>
       <td>True</td>
       <td>True</td>
@@ -412,7 +412,7 @@ abs(data_pred.corr()) > 0.75
       <td>False</td>
     </tr>
     <tr>
-      <th>horsepower</th>
+      <td>horsepower</td>
       <td>True</td>
       <td>True</td>
       <td>True</td>
@@ -422,7 +422,7 @@ abs(data_pred.corr()) > 0.75
       <td>False</td>
     </tr>
     <tr>
-      <th>weight</th>
+      <td>weight</td>
       <td>True</td>
       <td>True</td>
       <td>True</td>
@@ -432,7 +432,7 @@ abs(data_pred.corr()) > 0.75
       <td>False</td>
     </tr>
     <tr>
-      <th>acceleration</th>
+      <td>acceleration</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -442,7 +442,7 @@ abs(data_pred.corr()) > 0.75
       <td>False</td>
     </tr>
     <tr>
-      <th>model year</th>
+      <td>model year</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -452,7 +452,7 @@ abs(data_pred.corr()) > 0.75
       <td>False</td>
     </tr>
     <tr>
-      <th>origin</th>
+      <td>origin</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -467,7 +467,113 @@ abs(data_pred.corr()) > 0.75
 
 
 
-It seems like the variables `'cylinder'`, `'displacement'`, `'horsepower'`, and `'weight'` are all pretty highly correlated among each other. As such, you would typically remove three of them in order to remove collinear features. Again here, it would be nice to have easier visuals in case our predictor base grows (sometimes models have 100s of predictors!). A nice visualization of the correlation matrix is the heatmap. 
+It seems like the variables `'cylinder'`, `'displacement'`, `'horsepower'`, and `'weight'` are all pretty highly correlated among each other. 
+Gaining that information was easy from a small correlation matrix, but what if it was larger?
+
+Because the `corr` returns a dataframe, a neat fix is to use `stack` and a subset to return only the highly correlated pairs.
+
+
+```python
+# save absolute value of correlation matrix as a data frame
+# converts all values to absolute value
+# stacks the row:column pairs into a multindex
+# reset the index to set the multindex to seperate columns
+# sort values. 0 is the column automatically generated by the stacking
+
+df=data_pred.corr().abs().stack().reset_index().sort_values(0, ascending=False)
+
+# zip the variable name columns (Which were only named level_0 and level_1 by default) in a new column named "pairs"
+df['pairs'] = list(zip(df.level_0, df.level_1))
+
+# set index to pairs
+df.set_index(['pairs'], inplace = True)
+
+#d rop level columns
+df.drop(columns=['level_1', 'level_0'], inplace = True)
+
+# rename correlation column as cc rather than 0
+df.columns = ['cc']
+
+# drop duplicates. This could be dangerous if you have variables perfectly correlated with variables other than themselves.
+# for the sake of exercise, kept it in.
+df.drop_duplicates(inplace=True)
+```
+
+Now use a similar subset as done previously.
+
+
+```python
+df[(df.cc>.75) & (df.cc <1)]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cc</th>
+    </tr>
+    <tr>
+      <th>pairs</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>(cylinders, displacement)</td>
+      <td>0.950823</td>
+    </tr>
+    <tr>
+      <td>(weight, displacement)</td>
+      <td>0.932994</td>
+    </tr>
+    <tr>
+      <td>(weight, cylinders)</td>
+      <td>0.897527</td>
+    </tr>
+    <tr>
+      <td>(horsepower, displacement)</td>
+      <td>0.897257</td>
+    </tr>
+    <tr>
+      <td>(horsepower, weight)</td>
+      <td>0.864538</td>
+    </tr>
+    <tr>
+      <td>(horsepower, cylinders)</td>
+      <td>0.842983</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+A few lines of code, cleverly using pandas, produces a readable list of variable pairs and their correlation.  The code can be scaled in case our predictor base grows (sometimes models have 100s of predictors!).
+
+**NOTE** There will be cases when an analyst _should_ see all the highly correlated variables, including variables that are correlated 1 to 1. The code can be adjusted to those conditions.
+
+
+With the variables `'cylinder'`, `'displacement'`, `'horsepower'`, and `'weight'` so highly correlated, you would typically remove _three_ of them in order to remove collinear features. 
+
+
+Another option is to use a heatmap to render the correlation matrix as a visualization. 
 
 
 ```python
@@ -476,7 +582,7 @@ sns.heatmap(data_pred.corr(), center=0);
 ```
 
 
-![png](index_files/index_11_0.png)
+![png](index_files/index_15_0.png)
 
 
 You can see that light pink colors represent high correlations.
