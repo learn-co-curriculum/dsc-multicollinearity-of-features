@@ -1,8 +1,8 @@
-
 # Multicollinearity of Features
 
 ## Introduction
-In the previous lesson you learned about correlation and covariance. Now that you've begun moving towards regression models with multiple predictors, let's explore what it means when predictors are correlated with each other.
+
+Now that you've begun moving towards regression models with multiple predictors, let's explore what it means when predictors are correlated with each other and how this relates to the independence assumption of linear regression.
 
 ## Objectives
 You will be able to:
@@ -236,7 +236,9 @@ plt.show()
 ```
 
 
+    
 ![png](index_files/index_5_0.png)
+    
 
 
 This matrix has the cool feature that it returns scatterplots for relationships between two predictors, and histograms for a single feature on the diagonal. Have a quick look at this. When talking about correlation, what sort of scatter plots will catch our eye? Probably the ones with scatter plots that reveal some sort of linear relationship. For example, weight and displacement seem to be highly correlated. Weight and horsepower as well, and (not surprisingly) displacement and horsepower. This is nice, but it would be hard to examine each plot in detail when having a ton of features. Let's look at the correlation matrix instead. Instead of returning scatter plots and histograms, a correlation matrix returns pairwise correlations. Recall that correlations take a value between -1 and 1, -1 being a perfectly negative linear relationship, and +1 a perfectly positive linear relationship. 
@@ -582,7 +584,9 @@ sns.heatmap(data_pred.corr(), center=0);
 ```
 
 
+    
 ![png](index_files/index_15_0.png)
+    
 
 
 You can see that light pink colors represent high correlations.
