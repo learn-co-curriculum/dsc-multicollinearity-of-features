@@ -5,9 +5,11 @@
 Now that you've begun moving towards regression models with multiple predictors, let's explore what it means when predictors are correlated with each other and how this relates to the independence assumption of linear regression.
 
 ## Objectives
+
 You will be able to:
+
 * Explain why multicollinearity is an issue with linear regression
-* Create and Interpret a correlation matrix/heatmap and scatter matrix
+* Create and interpret a correlation matrix/heatmap and scatter matrix
 * Identify if variables are exhibiting collinearity
 
 ## Possible negative impacts of multicollinearity
